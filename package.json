@@ -22,12 +22,15 @@
   "homepage": "https://github.com/Ultimecia1463/Yardstick-assesment#readme",
   "dependencies": {
     "@supabase/supabase-js": "^2.57.4",
+    "@tailwindcss/postcss": "^4.1.13",
     "bcryptjs": "^3.0.2",
     "dotenv": "^17.2.2",
     "jsonwebtoken": "^9.0.2",
     "next": "^15.5.3",
+    "postcss": "^8.5.6",
     "react": "^19.1.1",
-    "react-dom": "^19.1.1"
+    "react-dom": "^19.1.1",
+    "tailwindcss": "^4.1.13"
   },
   "devDependencies": {
     "nodemon": "^3.1.10"

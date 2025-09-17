@@ -68,43 +68,82 @@ export default function NotesPage() {
   }
 
   return (
-    <div style={{ padding: 20 }}>
-      <h2>Notes — Tenant: {me?.tenant?.name} (Plan: {me?.tenant?.plan})</h2>
-      <div>Signed in as: {me?.user?.email} ({me?.user?.role})</div>
-
-      <form onSubmit={createNote} style={{ marginTop: 15 }}>
-        <input placeholder="title" value={title} onChange={(e) => setTitle(e.target.value)} />
-        <br />
-        <textarea placeholder="content" value={content} onChange={(e) => setContent(e.target.value)} />
-        <br />
-        <button type="submit">Create</button>
-      </form>
-
-      {err && <div style={{ color: 'red' }}>{err}</div>}
-
-      {me?.tenant?.plan === 'free' && notes.length >= 3 && (
-        <div style={{ marginTop: 10 }}>
-          <b>You reached Free plan limit (3 notes)</b>
-          <br />
-          {me?.user?.role === 'Admin' ? (
-            <button onClick={upgrade}>Upgrade to Pro</button>
-          ) : (
-            <div>Ask your Admin to upgrade</div>
-          )}
+    <div className="min-h-screen bg-zinc-950 text-white px-4 py-6">
+      <div className="max-w-3xl mx-auto space-y-6">
+        <h2 className="text-2xl font-bold">
+          Notes — Tenant: {me?.tenant?.name} (Plan: {me?.tenant?.plan})
+        </h2>
+        <div className="text-zinc-400">
+          Signed in as: {me?.user?.email} ({me?.user?.role})
         </div>
-      )}
 
-      <ul>
-        {notes.map((n) => (
-          <li key={n.id} style={{ marginTop: 10 }}>
-            <h4>{n.title}</h4>
-            <p>{n.content}</p>
-            <small>created: {new Date(n.created_at).toLocaleString()}</small>
-            <br />
-            <button onClick={() => del(n.id)}>Delete</button>
-          </li>
-        ))}
-      </ul>
+        <form onSubmit={createNote} className="space-y-4">
+          <input
+            placeholder="Title"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            className="w-full px-4 py-1 rounded-lg bg-zinc-800 border border-zinc-700 placeholder:text-zinc-500 text-white focus:outline-none focus:ring-2 focus:ring-neutral-600"
+          />
+
+          <textarea
+            placeholder="Content"
+            value={content}
+            onChange={(e) => setContent(e.target.value)}
+            className="w-full px-4 py-2 rounded-lg bg-zinc-800 border border-zinc-700 placeholder:text-zinc-500 text-white focus:outline-none focus:ring-2 focus:ring-neutral-600 resize-none"
+            rows={4}
+          />
+
+          <button
+            type="submit"
+            className="w-full py-1 bg-stone-200 hover:bg-stone-200/90 rounded-lg text-black font-semibold shadow-lg shadow-indigo-900/30 transition-all duration-200 active:bg-stone-200/40 "
+          >
+            Create
+          </button>
+        </form>
+
+        {err && <div className="text-red-500">{err}</div>}
+
+        {me?.tenant?.plan === 'free' && notes.length >= 3 && (
+          <div className="mt-4 p-4 bg-zinc-800 rounded-lg border border-zinc-700">
+            <b>You reached Free plan limit (3 notes)</b>
+            <div className="mt-2">
+              {me?.user?.role === 'Admin' ? (
+                <button
+                  onClick={upgrade}
+                  className="px-4 py-1 bg-indigo-600 hover:bg-indigo-900 rounded-lg text-white font-semibold shadow transition-all duration-200"
+                >
+                  Upgrade to Pro
+                </button>
+              ) : (
+                <div className="text-zinc-400">Ask your Admin to upgrade</div>
+              )}
+            </div>
+          </div>
+        )}
+
+        <ul className="space-y-4">
+          {notes.map((n) => (
+            <li
+              key={n.id}
+              className="p-4 bg-zinc-800 rounded-md border border-zinc-700 flex flex-col gap-2 shadow-sm"
+            >
+              <h4 className="font-medium text-white">{n.title}</h4>
+              <p className="text-zinc-300">{n.content}</p>
+              <div className="flex justify-between items-center">
+                <small className="text-zinc-500">
+                  created: {new Date(n.created_at).toLocaleString()}
+                </small>
+                <button
+                  onClick={() => del(n.id)}
+                  className="px-3 py-1 bg-red-600 hover:bg-red-900 rounded text-white text-sm transition"
+                >
+                  Delete
+                </button>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 }
