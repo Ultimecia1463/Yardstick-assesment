@@ -220,9 +220,4 @@ This project is licensed under the **ISC License**.
 * **GitHub Repository**:
   [https://github.com/Ultimecia1463/Yardstick-assesment](https://github.com/Ultimecia1463/Yardstick-assesment)
 
-```
 
----
-
-Would you like me to also add **sample `curl` commands** (for login, fetching notes, upgrading tenant, etc.) so that reviewers can test APIs directly without going through the UI?
-```
