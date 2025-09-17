@@ -70,9 +70,22 @@ export default function NotesPage() {
   return (
     <div className="min-h-screen bg-zinc-950 text-white px-4 py-6">
       <div className="max-w-3xl mx-auto space-y-6">
-        <h2 className="text-2xl font-bold">
-          Notes — Tenant: {me?.tenant?.name} (Plan: {me?.tenant?.plan})
-        </h2>
+
+        <div className="flex items-center justify-between">
+          <h2 className="text-2xl font-bold">
+            Notes — Tenant: {me?.tenant?.name} (Plan: {me?.tenant?.plan})
+          </h2>
+          <button
+            onClick={() => {
+              localStorage.clear();
+              router.push('/');
+            }}
+            className="px-3 py-1 bg-red-600 hover:bg-red-700 rounded-lg text-white font-semibold shadow transition-all duration-200 active:scale-95"
+          >
+            Logout
+          </button>
+        </div>
+
         <div className="text-zinc-400">
           Signed in as: {me?.user?.email} ({me?.user?.role})
         </div>
